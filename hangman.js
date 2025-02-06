@@ -4,6 +4,7 @@ const ids = ['head', 'left-arm', 'right-arm', 'left-leg', 'middle-body', 'right-
 
 let randomWord = String(words[Math.floor(Math.random() * 50) + 1]);
 let attempts = 0;
+let guessed = [];
 
 function checkWords() {
 
@@ -11,22 +12,36 @@ function checkWords() {
     const right = document.getElementById('right');
     const status = document.getElementById('status');
     let userGuess = document.getElementById('guess').value.toLowerCase();
-    let userInput = document.getElementById('guess');
-
-    const letters = randomWord.split('');
-    right.innerHTML += `${letters}`
-    letters.style.display = "none";
-
-    console.log(letters);
 
     if (userGuess.length > 1) {
         console.error("Too Many Letters Entered");
+        return;
     }
 
+    if (guessed.includes(userGuess)) {
+        console.log("You've already guessed that letter.");
+        return;
+    }
+
+    guessed.push(userGuess);
+
+    const letters = randomWord.split('');
+    let display = '';
+
+    console.log(letters);
+
+    for (let i = 0; i < letters.length; i++) {
+        if (guessed.includes(letters[i])) {
+            display += letters[i];
+        } else {
+            display += '_';
+        }
+    }
+    right.innerHTML = display;
+
     if(letters.includes(userGuess)) {
-        userInput = '';
-        if (right.innerHTML.includes(randomWord)) {
-            status.innherHTML = `You Saved The Man!`
+        if (display === randomWord) {
+            status.innerHTML = `You Saved The Man!`;
         }
     } else {
         let randInt = Math.floor(Math.random() * ids.length);
@@ -34,11 +49,13 @@ function checkWords() {
         ids.splice(randInt, 1);
         randomBody.style.display = "none";
         wrong.innerHTML += `${userGuess}`;
-        userInput = '';
+        userGuess.innerHTML = '';
         attempts ++;
     }
 
-    if (attempts > 6) {
+    if (attempts >= 6) {
         status.innerHTML = "Game Over, You Did Not Save The Man";
     }
+
+    document.getElementById('guess').value = '';
 }

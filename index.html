@@ -9,15 +9,22 @@
     <script src='hangman.js'></script>
 </head>
 <body>
+    <div class="container">
+    <div class="body">
     <div id="head">O</div>
     <div id="torso"><span id="left-arm">/</span><span id="middle-body">|</span><span id="right-arm">\</span></div>
     <div id="legs"><span id="left-leg">/</span><span class="space"> </span><span id="right-leg">\</span></div>
+    </div>
 
     <input type="text" id="guess" placeholder="Enter A Letter...">
     <button type="button" id="submit" onclick="checkWords()">Submit</button>
 
+    <div class="statuses">
     <div id="wrong">Incorrect Guesses: </div>
-    <div id="right">Correct Guesses: </div>
+    <div id="right"></div>
     <div id="status"></div>
+
+    </div>
+</div>
 </body>
 </html>

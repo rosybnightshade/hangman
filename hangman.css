@@ -9,7 +9,27 @@ body {
 }
 #wrong {
     color:red;
+    border: darkred 5px solid;
+    padding: 5px;
 }
 #right {
     color:green;
+    border: darkgreen 5px solid;
+    padding: 5px;
+}
+#status {
+    padding: 5px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+.statuses {
+    padding: 5px;
+    margin: 5px;
+}
+#submit, #guess {
+    padding:5px;
+    margin: 5px;
 }
