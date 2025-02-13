@@ -6,25 +6,26 @@
     <title>Hangman</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='hangman.css'>
-    <script src='hangman.js'></script>
+    <script src='hangman.js' defer></script>
 </head>
 <body>
     <div class="container">
     <div class="body">
-    <div id="head">O</div>
-    <div id="torso"><span id="left-arm">/</span><span id="middle-body">|</span><span id="right-arm">\</span></div>
-    <div id="legs"><span id="left-leg">/</span><span class="space"> </span><span id="right-leg">\</span></div>
+    <div id="head" class="Head">O</div>
+    <div id="torso"><span id="left-arm" class="Left Arm">/</span><span id="middle-body" class="Torso">|</span><span id="right-arm" class="Right Arm">\</span></div>
+    <div id="legs"><span id="left-leg" class="Left Leg">/</span><span class="space"> </span><span id="right-leg" class="Right Leg">\</span></div>
     </div>
 
-    <input type="text" id="guess" placeholder="Enter A Letter...">
+    <input type="text" autocomplete="off" id="guess" placeholder="Enter A Letter...">
     <button type="button" id="submit" onclick="checkWords()">Submit</button>
+    <button type="button" id="reset" onclick="resetGame()">Reset</button>
 
     <div class="statuses">
     <div id="wrong">Incorrect Guesses: </div>
     <div id="right"></div>
-    <div id="status"></div>
 
     </div>
 </div>
+<div id="status"></div>
 </body>
 </html>

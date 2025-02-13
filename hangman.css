@@ -8,28 +8,59 @@ body {
     padding: 40px;
 }
 #wrong {
-    color:red;
-    border: darkred 5px solid;
+    color:#C81927;
     padding: 5px;
+
+    display:none;
 }
 #right {
-    color:green;
-    border: darkgreen 5px solid;
+    color:#34430F;
     padding: 5px;
+    display:none;
+    margin-top: 10px;
+
+    text-align: center;
 }
 #status {
     padding: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+    display:none;
+
+    text-align: center;
 }
 .container {
     display: flex;
     flex-direction: column;
     place-items: center;
+    border: 2px solid #9AA6B2;
+    border-radius: 5px;
+    box-shadow: 5px 3px 3px #9AA6B2;
+    background-color: #F8FAFC;
 }
 .statuses {
     padding: 5px;
     margin: 5px;
 }
-#submit, #guess {
+#submit, #guess, #reset {
     padding:5px;
     margin: 5px;
+}
+#submit, #reset {
+    border-radius: 5px;
+    background-color: #D9EAFD;
+    border: 2px solid #9AA6B2;
+    width:13em;
+    caret-color:#23486A ;
+}
+#submit:hover, #reset:hover {
+    background-color: #3B6790;
+    border: 2px solid #23486A;
+    color:#F8FAFC;
+}
+#guess {
+    background-color: #FBFBFB;
+    border: 2px solid #9AA6B2;
+    border-radius: 5px;
 }
