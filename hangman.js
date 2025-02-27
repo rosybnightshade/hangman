@@ -2,9 +2,8 @@ const words = ["genuine","scheme","affinity","expand","ring","trap","background"
 
 const ids = ['head', 'left-arm', 'right-arm', 'left-leg', 'middle-body', 'right-leg'];
 
-let randomWord = String(words[Math.floor(Math.random() * 50) + 1]);
+let randomWord = String(words[Math.floor(Math.random() * words.length) + 1]);
 let attempts = 0;
-let streak = 0;
 let guessed = [];
 
 let guess = document.getElementById('guess');
@@ -61,10 +60,9 @@ function checkWords() {
         if (guessed.includes(letters[i])) {
             right.style.display = "block";
             display += letters[i];
-            streak+=1;
 
             //  display
-            status.innerHTML = `Correct! Streak: ${streak}`;
+            status.innerHTML = `Correct!`;
             status.style.display = 'block';
             status.style.backgroundColor = '#CBE58B';
             status.style.color = '#34430F';
@@ -96,44 +94,19 @@ function checkWords() {
         status.style.color = '#C81927';
         status.style.boxShadow = '5px 3px 3px #7A1600'
         status.style.border = '#64403E 2px solid'
-        userGuess.innerHTML = '';
+        guess.innerHTML = '';
         attempts ++;
     }
 
     if (attempts >= 6) {
         status.style.display = "block";
-        status.innerHTML = `Game Over, You Did Not Save The Man. Your Word Was ${randomWord}`;
+        let word = randomWord.toUpperCase();
+        status.innerHTML = `Game Over, You Did Not Save The Man. Your Word Was ${word}`;
     }
 
     guess.value = '';
 }
 
 function resetGame() {
-
-    // randomWord = String(words[Math.floor(Math.random() * 50) + 1]);
-    // attempts = 0;
-    // guessed = [];
-
-    // let status = document.getElementById('status');
-    
-    // guess.value = '';
-    // right.value = '';
-    // wrong.value = '';
-    // status.value = '';
-
-    // right.style.display = 'none';
-    // wrong.style.display = 'none';
-    // status.style.display = 'none';
-
-    // let body = document.getElementsByClassName('body');
-
-    // body.innerHTML =    
-    // `
-    //  <div id="head" class="Head">O</div>
-    // <div id="torso"><span id="left-arm" class="Left Arm">/</span><span id="middle-body" class="Torso">|</span><span id="right-arm" class="Right Arm">\</span></div>
-    // <div id="legs"><span id="left-leg" class="Left Leg">/</span><span class="space"> </span><span id="right-leg" class="Right Leg">\</span></div>
-    // `
-
-
-    location.href = location.href;
+    window.location.href = window.location.href;
 }
