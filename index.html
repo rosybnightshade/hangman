@@ -1,31 +1,40 @@
-<!DOCTYPE html lang="en">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Hangman</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='hangman.css'>
+    <link rel='icon' type="image/x-icon" href="stickman.ico">
     <script type="module" src='hangman.js' defer></script>
 </head>
 <body>
+    <!--Gameplay Space-->
     <div class="container">
+
+    <!--Space for the body parts of the hangman, made using special keyboard characters-->
     <div class="body">
     <div id="head" class="Head">O</div>
     <div id="torso"><span id="left-arm" class="Left Arm">/</span><span id="middle-body" class="Torso">|</span><span id="right-arm" class="Right Arm">\</span></div>
     <div id="legs"><span id="left-leg" class="Left Leg">/</span><span class="space"> </span><span id="right-leg" class="Right Leg">\</span></div>
     </div>
 
+    <!--Input for the user to guess a letter-->
     <input type="text" autocomplete="off" id="guess" placeholder="Enter A Letter...">
+    <!--Submit button for user to submit their guess (alternatively could press Enter)-->
     <button type="button" id="submit">Submit</button>
+    <!--Reset button for user to reset their game (alternatively could press ~)-->
     <button type="button" id="reset" >Reset</button>
 
+    <!--Area for correct and incorrect statuses-->
     <div class="statuses">
-    <div id="wrong">Incorrect Guesses: </div>
-    <div id="right"></div>
+    <div id="wrong">Incorrect Guesses: </div> <!--Incorrect Guesses-->
+    <div id="right"></div> <!--Correct Guesses-->
 
     </div>
+    <audio src="./ahhhh.mp3" preload id="ahhhh" autoplay muted></audio> <!--Audio to be played when the user guesses incorrectly-->
 </div>
-<div id="status"></div>
+<div id="status"></div> <!--Area for win, loss, and invalid guess statuses-->
 </body>
 </html>

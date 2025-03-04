@@ -1,35 +1,18 @@
+/* universal styles*/
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    cursor: url('/cursor.cur'), auto;
+    user-select: none;
 }
+
 body {
     font-size: 40px;
     padding: 40px;
 }
-#wrong {
-    color:#C81927;
-    padding: 5px;
 
-    display:none;
-}
-#right {
-    color:#34430F;
-    padding: 5px;
-    display:none;
-    margin-top: 10px;
-
-    text-align: center;
-}
-#status {
-    padding: 5px;
-    margin-top: 20px;
-    border-radius: 5px;
-
-    display:none;
-
-    text-align: center;
-}
+/* styling for the main gameplay space */
 .container {
     display: flex;
     flex-direction: column;
@@ -39,14 +22,50 @@ body {
     box-shadow: 5px 3px 3px #9AA6B2;
     background-color: #F8FAFC;
 }
+
+
+/* default styling for box that signals to the user that they have guessed incorrectly */
+#wrong {
+    color:#C81927;
+    padding: 5px;
+
+    display:none;
+}
+
+/* default styling for box that signals to the user that they have guessed correctly */
+#right {
+    color:#34430F;
+    padding: 5px;
+    display:none;
+    margin-top: 10px;
+
+    text-align: center;
+}
+
+/* default styling for box that signals to the user that their guess is invalid or that they have won */
+#status {
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+    display:none;
+
+    text-align: center;
+}
+
+/* minor styling for the box that carries the #right and #wrong user signals */
 .statuses {
     padding: 5px;
     margin: 5px;
 }
+
+/* simple styling for submit & reset buttons, as well has the user guess input */
 #submit, #guess, #reset {
     padding:5px;
     margin: 5px;
 }
+
+/* more in-depth styling of submit and rest buttons */
 #submit, #reset {
     border-radius: 5px;
     background-color: #D9EAFD;
@@ -54,17 +73,22 @@ body {
     width:13em;
     caret-color:#23486A ;
 }
+
+/* contrast styling for submit and reset buttons while being hovered over by the user */
 #submit:hover, #reset:hover {
     background-color: #3B6790;
     border: 2px solid #23486A;
     color:#F8FAFC;
 }
+
+/* user input specific styling */
 #guess {
     background-color: #FBFBFB;
     border: 2px solid #9AA6B2;
     border-radius: 5px;
 }
 
+/* handles responsiveness */
 @media (max-width: 435px) {
     #wrong, #right, #status {
         text-align: center;

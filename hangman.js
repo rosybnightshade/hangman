@@ -38,14 +38,17 @@ function checkWords() {
     let status = document.getElementById('status');
     let userGuess = document.getElementById('guess').value.toLowerCase();
 
+    let validCharacters = "qwertyuiopasdfghjklzxcvbnm";
+
     // determines if the user has entered a character that is not a special symbol, empty space, and/or multiple letters
-    if (userGuess.length > 1  || userGuess.length < 0) {
+    if (userGuess.length > 1  || userGuess.length <= 0 || !validCharacters.includes(userGuess)) {
         console.error("Invalid Guess");
 
         // displays that the character entered is invalid for user benefit
         status.innerHTML = 'Invalid Guess. Please Try Again';
         status.style.display = 'block';
-        status.style.backgroundColor = '#F8FAFC';
+        status.style.backgroundColor = '#F8FAFC';   
+
         status.style.color = '#23486A';
         status.style.boxShadow = '5px 3px 3px #9AA6B2'
         status.style.border = '2px solid #9AA6B2'
@@ -102,6 +105,7 @@ function checkWords() {
     } else {
 
         // randomly deletes a body part from the hangman when the user enters a wrong guess
+        document.getElementById("ahhhh").play();
         let randInt = Math.floor(Math.random() * ids.length);
         let randomBody = document.getElementById(ids[randInt]);
         ids.splice(randInt, 1);
@@ -118,6 +122,8 @@ function checkWords() {
         status.style.border = '#64403E 2px solid'
         guess.innerHTML = '';
         attempts ++;
+
+        
     }
 
     // determines if the hangman has ran out of body parts, signifing the end of the game
