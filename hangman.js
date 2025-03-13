@@ -1,13 +1,16 @@
 // word bank
-const words = ["genuine","scheme","affinity","expand","ring","trap","background","innocent","suntan","secretary","solution","hole","attitude","minimum","vegetarian","directory","raw","we","terrify","excavate","harvest","produce","deteriorate","drain","cold","incident","clarify","compound","chop","negotiation","gallery","different","go","tolerate","pattern","consciousness"];
+const words = ["genuine","scheme","affinity","expand","ring","trap","background","innocent","suntan","secretary","solution","hole","attitude","minimum","vegetarian","directory","raw","we","terrify","excavate","harvest","produce","deteriorate","drain","cold","incident","clarify","compound","chop","negotiation","gallery","different","go","tolerate","pattern","consciousness","throw", "test", "suggestion", "aboriginal", "approve", "magenta", "detailed", "unbiased", "quizzical", "language", "rhetoric", "substance", "synthesis", "argumentation", "happy", "digest", "phobic", "canvas", "incredible", "word", "unaccountable", "antidisestablishmentarianism", "anarchy", "pneumonoultramicroscopicsilicovolcanoconiosis", "influenza", "acetaminophen", "ibuprofen", "antibiotics", "impressment", "telegraph", "domesticity", "urbanization", "transcendentalism", "temperance", "accessilbility", "connectivity", "distribution", "geography", "physics", "education", "mathematics", "science", "biology", "english", "motivated", "teal", "sesquipedalian", "Supercalifragilisticexpialidocious", "uncharacteristically", "efficacious", "periodic", "romantic", "depressed", "anxiety", "popular", "exchange", "bouncy", "faulty", "disassociative", "inject", "sectionalism", "educated", "governer", "humiliate", "optimal"];
 
 // ids for hangman body parts
 const ids = ['head', 'left-arm', 'right-arm', 'left-leg', 'middle-body', 'right-leg'];
 
 // global variables
-let randomWord = String(words[Math.floor(Math.random() * words.length) + 1]);
+let randomWord = String(words[Math.floor(Math.random() * words.length - 1) + 1]);
 let attempts = 0;
 let guessed = [];
+
+let countdownId;
+let timeLeft = 60;
 
 let guess = document.getElementById('guess');
 let submit = document.getElementById('submit');
@@ -32,6 +35,7 @@ reset.addEventListener('click', resetGame);
 
 // checks each letter submitted
 function checkWords() {
+    timer();
 
     const wrong = document.getElementById('wrong');
     const right = document.getElementById('right');
@@ -81,6 +85,7 @@ function checkWords() {
         if (guessed.includes(letters[i])) {
             right.style.display = "block";
             display += letters[i];
+            resetTimer();
 
             // displays the correct user guess for user benefit
             status.innerHTML = `Correct!`;
@@ -103,40 +108,83 @@ function checkWords() {
             status.innerHTML = `You Saved The Man!`;
         }
     } else {
-
-        // randomly deletes a body part from the hangman when the user enters a wrong guess
-        document.getElementById("ahhhh").play();
-        let randInt = Math.floor(Math.random() * ids.length);
-        let randomBody = document.getElementById(ids[randInt]);
-        ids.splice(randInt, 1);
-        randomBody.style.display = "none";
-        status.innerHTML = `You Lost His ${randomBody.className}!!!`
-
-        // display the wrong letters guessed for user benefit
-        wrong.style.display = "block";
-        wrong.innerHTML += `${userGuess}`;
-        status.style.display = 'block';
-        status.style.backgroundColor = '#E89E87';
-        status.style.color = '#C81927';
-        status.style.boxShadow = '5px 3px 3px #7A1600'
-        status.style.border = '#64403E 2px solid'
-        guess.innerHTML = '';
-        attempts ++;
-
+        badGuess();
+    }
+    attemptBalance();
+}
+    // function for a wrong guess
+    function badGuess() {
+        let status = document.getElementById('status');
+        let userGuess = document.getElementById('guess').value.toLowerCase();
+                // randomly deletes a body part from the hangman when the user enters a wrong guess
+                document.getElementById("ahhhh").play();
+                let randInt = Math.floor(Math.random() * ids.length);
+                let randomBody = document.getElementById(ids[randInt]);
+                ids.splice(randInt, 1);
+                randomBody.style.display = "none";
+                status.innerHTML = `You Lost His ${randomBody.className}!!!`
         
+                // display the wrong letters guessed for user benefit
+                wrong.style.display = "block";
+                wrong.innerHTML += `${userGuess}`;
+                status.style.display = 'block';
+                status.style.backgroundColor = '#E89E87';
+                status.style.color = '#C81927';
+                status.style.boxShadow = '5px 3px 3px #7A1600'
+                status.style.border = '#64403E 2px solid'
+                guess.innerHTML = '';
+                attempts ++;
+        
+                
     }
 
-    // determines if the hangman has ran out of body parts, signifing the end of the game
-    if (attempts >= 6) {
+// calculates the attempts and if the player's game is over
+function attemptBalance() {
+    let userGuess = document.getElementById('guess').value.toLowerCase();
+    let status = document.getElementById('status');
+       // determines if the hangman has ran out of body parts, signifing the end of the game
+       if (attempts >= 6 || timeLeft <= 0) {
         status.style.display = "block";
         let word = randomWord.toUpperCase();
         status.innerHTML = `Game Over, You Did Not Save The Man. Your Word Was ${word}`;
+
+        let guessInput = document.getElementById('guess');
+        guessInput.addEventListener('keydown', (event) => {
+            event.preventDefault();
+        })
     }
 
     guess.value = '';
 }
 
+// creates the 60 second timer
+function timer() {
+    let timer = document.getElementById('timer');
+
+    countdownId = setInterval(function() {
+        if (timeLeft <= 0) {
+            clearInterval(countdownId);
+            attemptBalance();
+        } else {
+            timer.innerHTML = timeLeft;
+            timeLeft--;}
+    }, 1000);
+}
+
+// resets the 30 second timer
+function resetTimer() {
+    clearInterval(countdownId); // Clear existing timer
+    timeLeft = 60;
+    updateTimerDisplay();
+  }
+
+// displays the 30 second timer for user benefit
+function updateTimerDisplay() {
+    timer.innerHTML = timeLeft;
+  }
+
 // resets the game by refreshing the page
 function resetGame() {
     window.location.href = window.location.href;
+    resetTimer();
 }

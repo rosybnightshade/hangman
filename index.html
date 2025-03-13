@@ -7,11 +7,17 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='hangman.css'>
     <link rel='icon' type="image/x-icon" href="stickman.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
     <script type="module" src='hangman.js' defer></script>
 </head>
 <body>
     <!--Gameplay Space-->
+    <h3 id="title">H A N G M A N</h1>
     <div class="container">
+
+    <div id="time-cont">TIMER: <span id="timer"></span></div>
 
     <!--Space for the body parts of the hangman, made using special keyboard characters-->
     <div class="body">
@@ -33,8 +39,7 @@
     <div id="right"></div> <!--Correct Guesses-->
 
     </div>
-    <audio src="./ahhhh.mp3" preload id="ahhhh" autoplay muted></audio> <!--Audio to be played when the user guesses incorrectly-->
+    <audio src="./ahhhh.mp3" preload id="ahhhh" autoplay></audio> <!--Audio to be played when the user guesses incorrectly-->
 </div>
 <div id="status"></div> <!--Area for win, loss, and invalid guess statuses-->
 </body>
-</html>

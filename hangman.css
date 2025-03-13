@@ -88,6 +88,24 @@ body {
     border-radius: 5px;
 }
 
+/* timer styling */
+#time-cont {
+    font-family: "Fontdiner Swanky", serif;
+    font-weight: 300;
+    font-style: normal;
+
+    font-size: 30px;
+}
+
+/* title styling */
+#title {
+    font-family: "Fontdiner Swanky", serif;
+    font-weight: 400;
+    font-style: normal;
+
+    text-align: center;
+}
+
 /* handles responsiveness */
 @media (max-width: 435px) {
     #wrong, #right, #status {
